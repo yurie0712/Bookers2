@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>bookers-level2</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          Bookers
+        </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav navbar-right">
+          <% if user_signed_in? %>
+            <li class="">
+              <%= link_to user_path(current_user.id), method: :get do %>
+              <i class="glyphicon glyphicon-home" aria-hidden="true"></i>
+              Home
+              <% end %>
+            </li>
+            <li>
+              <%= link_to users_path, method: :get do %>
+                <i class="glyphicon glyphicon-user" aria-hidden="true"></i>
+                Users
+              <% end %>
+            </li>
+            <li>
+              <%= link_to books_path, method: :get do %>
+              <i class="glyphicon glyphicon-book" aria-hidden="true"></i>
+              Books
+              <% end %>
+            </li>
+            <li>
+              <%= link_to destroy_user_session_path, method: :delete do %>
+              logout
+              <i class="glyphicon glyphicon-log-out" aria-hidden="true"></i>
+              <% end %>
+            </li>
+          <% else %>
+            <li>
+              <%= link_to root_path, method: :get do %>
+              <i class="glyphicon glyphicon-home" aria-hidden="true"></i>
+              Home
+              <% end %>
+            </li>
+            <li>
+              <%= link_to home_about_path, method: :get do %>
+              <i class="glyphicon glyphicon-link" aria-hidden="true"></i>
+              About
+              <% end %>
+            </li>
+            <li>
+              <%= link_to new_user_registration_path, method: :get do %>
+              <i class="glyphicon glyphicon-edit" aria-hidden="true"></i>
+               sign up
+              <% end %>
+            </li>
+            <li>
+              <%= link_to new_user_session_path, method: :post do %>
+                <i class="glyphicon glyphicon-log-in" aria-hidden="true"></i>
+                Login
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+</nav>
+
+    <%= yield %>
+
+<footer>
+  <div class="container text-left">
+    <div class="row">
+      <div class="col-xs-3 col-xs-offset-9">
+        <p>CopyRight Infratop.inc</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  </body>
+</html>
